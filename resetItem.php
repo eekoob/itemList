@@ -10,9 +10,6 @@
 	<div>
 		<h3 class="mt-3 ml-3">Reset List</h3>
 	</div>
-
-	
-
 	<div>
 		<div id="result"></div>
 
@@ -26,9 +23,7 @@
 			<div class="form-group">
 				<button class="btn btn-secondary" type="submit" name="cancelResetItem" value="1">CANCEL</button>
 			</div>
-		</form>
-		
-
+		</form>	
 	</div>
 </body>
 </html>

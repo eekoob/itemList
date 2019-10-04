@@ -9,19 +9,18 @@
 		}
 
 		if(!isset($_COOKIE["countItem"])) {
-			setcookie("countItem", "0", time() + 86400 , "/" );
-			setcookie("listItem", "", time() + 86400 , "/" );
-			setcookie("currentItemId", "0", time() + 86400 , "/" );
+			setcookie("countItem", "0", time() + 86400*30 , "/" );
+			setcookie("listItem", "", time() + 86400*30 , "/" );
+			setcookie("currentItemId", "0", time() + 86400*30 , "/" );
 		} 
 
-		
 		$cookie_currentCountItem = (int)$_COOKIE["countItem"]+1;
 		$cookie_currentItemId = (int)$_COOKIE["currentItemId"]+1;
 		$cookie_value = $itemName."_".$itemQty."_".$itemPrice;
-		setcookie($cookie_currentItemId, $cookie_value, time() + 86400 , "/" );
-		setcookie("countItem", $cookie_currentCountItem, time() + 86400 , "/" );
-		setcookie("listItem", $_COOKIE["listItem"].$cookie_currentItemId.'_', time() + 86400 , "/" );
-		setcookie("currentItemId", $cookie_currentItemId, time() + 86400 , "/" );
+		setcookie($cookie_currentItemId, $cookie_value, time() + 86400*30 , "/" );
+		setcookie("countItem", $cookie_currentCountItem, time() + 86400*30 , "/" );
+		setcookie("listItem", $_COOKIE["listItem"].$cookie_currentItemId.'_', time() + 86400*30 , "/" );
+		setcookie("currentItemId", $cookie_currentItemId, time() + 86400*30 , "/" );
 	}
 	header('location: itemList.php');
 
