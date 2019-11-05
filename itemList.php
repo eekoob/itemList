@@ -85,7 +85,7 @@
 					  <div class="input-group-prepend">
 					    <span class="input-group-text">Qty : </span>
 					  </div>
-					  <input class="form-control" required="true" type="tel" name="itemQty" placeholder="Qty" aria-label="Qty">
+					  <input class="form-control" type="tel" name="itemQty" placeholder="1" aria-label="Qty">
 					  <div class="input-group-prepend ml-2">
 					    <span class="input-group-text">Price : </span>
 					  </div>
