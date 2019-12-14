@@ -85,11 +85,11 @@
 					  <div class="input-group-prepend">
 					    <span class="input-group-text">Qty : </span>
 					  </div>
-					  <input class="form-control" type="tel" name="itemQty" placeholder="1" aria-label="Qty">
+					  <input class="form-control" type="number" pattern="[0-9]*" name="itemQty" placeholder="1" aria-label="Qty">
 					  <div class="input-group-prepend ml-2">
 					    <span class="input-group-text">Price : </span>
 					  </div>
-					  <input class="form-control" required="true" type="tel" name="itemPrice" placeholder="Per 1" aria-label="Unit Price">
+					  <input class="form-control" required="true" type="number" pattern="[0-9]*" inputmode="decimal" name="itemPrice" placeholder="Per 1" aria-label="Unit Price">
 					</div>
 				</div>
 			</div>
