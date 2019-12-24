@@ -89,7 +89,7 @@
 					  <div class="input-group-prepend ml-2">
 					    <span class="input-group-text">Price : </span>
 					  </div>
-					  <input class="form-control" required="true" type="number" pattern="[0-9]*" inputmode="decimal" name="itemPrice" placeholder="Per 1" aria-label="Unit Price">
+					  <input class="form-control" required="true" type="number" step="0.01" pattern="[0-9]*" inputmode="decimal" name="itemPrice" placeholder="Per 1" aria-label="Unit Price">
 					</div>
 				</div>
 			</div>
