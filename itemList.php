@@ -13,7 +13,7 @@
 		<h3 class="mt-3 ml-3">Items List</h3>
 	</div>
 
-	<?php 
+	<?php
 		if(isset($_COOKIE["countItem"]) and isset($_COOKIE["listItem"]) and $_COOKIE["countItem"]!='0') {
 			$countItem = $_COOKIE["countItem"];
 			$listItemsRaw = ltrim(rtrim($_COOKIE["listItem"],"_"),"_");
