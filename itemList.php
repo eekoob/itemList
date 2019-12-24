@@ -35,14 +35,14 @@
 			');
 			foreach ($listItems as $key) {
 				$item = explode("_", $_COOKIE[$key]);
-				$itemTotal = (int)$item[1]*(int)$item[2];
+				$itemTotal = (int)$item[1]*(float)$item[2];
 				$total = $total + $itemTotal;
 				// echo ($item[0] . $item[1] . $item[2] . $itemTotal . $total );
 				echo ('
 					<tr>
 					  <th scope="row"><input class="ml-0 mr-1" type="checkbox" name="delItemList[]" aria-label="Checkbox for items" value="'.$key.'">'.$itemNumber.'</th>
 					  <td>'.$item[0].'</td>
-					  <td>'.(int)$item[1].'<small><small> x '.(int)$item[2].'</small></small></td>
+					  <td>'.(int)$item[1].'<small><small> x '.(float)$item[2].'</small></small></td>
 					  <td>'.$itemTotal.'</td>
 					</tr>
 				');
