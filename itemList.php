@@ -9,6 +9,18 @@
 	<meta name="apple-mobile-web-app-capable" content="yes">
 </head>
 <body>
+	<ul class="nav nav-tabs" >
+        <li>
+	    	<form action="itemList.php" method="get">
+	        	<button class="btn btn-link" type="submit"><b>Items</b></button>
+	    	</form>
+        </li>
+        <li>
+        	<form action="compare.html" method="get">
+            	<button class="btn btn-link" type="submit">Compare</button>
+        	</form>
+        </li>
+    </ul>
 	<div>
 		<h3 class="mt-3 ml-3">Items List</h3>
 	</div>
