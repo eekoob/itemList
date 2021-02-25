@@ -9,107 +9,104 @@
 	<meta name="apple-mobile-web-app-capable" content="yes">
 </head>
 <body>
-	<ul class="nav nav-tabs" id="myTab" role="tablist">
-	  <li class="nav-item" role="presentation">
-	    <a class="nav-link active" id="items-tab" data-bs-toggle="tab" href="itemList.php" role="tab" aria-controls="nav-item" aria-selected="true">Items</a>
-	  </li>
-	  <li class="nav-item" role="presentation">
-	    <a class="nav-link" id="compare-tab" data-bs-toggle="tab" href="compare.html" role="tab" aria-controls="nav-compare" aria-selected="false">Compare</a>
-	  </li>
-	</ul>
-	<div class="tab-content" id="myTabContent">
-	  <div class="tab-pane fade show active" id="nav-items" role="tabpanel" aria-labelledby="items-tab">
-	  	<div>
-			<h3 class="mt-3 ml-3">Items</h3>
-		</div>
-		<?php 
-			if(isset($_COOKIE["countItem"]) and isset($_COOKIE["listItem"]) and $_COOKIE["countItem"]!='0') {
-				$countItem = $_COOKIE["countItem"];
-				$listItemsRaw = ltrim(rtrim($_COOKIE["listItem"],"_"),"_");
-				$listItems = explode("_", $listItemsRaw);
-				$total = 0;
-				$itemNumber = 1;
+	<div>
+		<h3 class="mt-3 ml-3">Items List</h3>
+	</div>
+
+	<?php 
+		if(isset($_COOKIE["countItem"]) and isset($_COOKIE["listItem"]) and $_COOKIE["countItem"]!='0') {
+			$countItem = $_COOKIE["countItem"];
+			$listItemsRaw = ltrim(rtrim($_COOKIE["listItem"],"_"),"_");
+			$listItems = explode("_", $listItemsRaw);
+			$total = 0;
+			$itemNumber = 1;
+			echo ('
+				<form class="form-group ml-3 mr-3" action="deleteItem.php" method="post">
+				  <table class="table table-striped">
+				    <thead class="thead-light">
+				      <tr>
+				        <th scope="col">#</th>
+				        <th scope="col">Item</th>
+				        <th scope="col">Qty</th>
+				        <th scope="col">Price</th>
+				      </tr>
+				    </thead>
+				    <tbody>
+			');
+			foreach ($listItems as $key) {
+				$item = explode("_", $_COOKIE[$key]);
+				$itemTotal = (int)$item[1]*(float)$item[2];
+				$total = $total + $itemTotal;
+				// echo ($item[0] . $item[1] . $item[2] . $itemTotal . $total );
 				echo ('
-					<form class="form-group ml-3 mr-3" action="deleteItem.php" method="post">
-					  <table class="table table-striped">
-					    <thead class="thead-light">
-					      <tr>
-					        <th scope="col">#</th>
-					        <th scope="col">Item</th>
-					        <th scope="col">Qty</th>
-					        <th scope="col">Price</th>
-					      </tr>
-					    </thead>
-					    <tbody>
+					<tr>
+					  <th scope="row"><input class="ml-0 mr-1" type="checkbox" name="delItemList[]" aria-label="Checkbox for items" value="'.$key.'">'.$itemNumber.'</th>
+					  <td>'.$item[0].'</td>
+					  <td>'.(int)$item[1].'<small><small> x '.(float)$item[2].'</small></small></td>
+					  <td>'.$itemTotal.'</td>
+					</tr>
 				');
-				foreach ($listItems as $key) {
-					$item = explode("_", $_COOKIE[$key]);
-					$itemTotal = (int)$item[1]*(float)$item[2];
-					$total = $total + $itemTotal;
-					// echo ($item[0] . $item[1] . $item[2] . $itemTotal . $total );
-					echo ('
-						<tr>
-						  <th scope="row"><input class="ml-0 mr-1" type="checkbox" name="delItemList[]" aria-label="Checkbox for items" value="'.$key.'">'.$itemNumber.'</th>
-						  <td>'.$item[0].'</td>
-						  <td>'.(int)$item[1].'<small><small> x '.(float)$item[2].'</small></small></td>
-						  <td>'.$itemTotal.'</td>
-						</tr>
-					');
-					$itemNumber++;
-				}
-				echo ('
-					  </tbody>
-					  <thead class="thead-light">
-					    <tr>
-				          <th scope="row">#</th>
-				          <th></th>
-				          <th><i>Total</i></th>
-				          <th>'.$total.'</th>
-				        </tr>
-					  </thead>
-					  </table>
-					  <div class="form-group">
-					    <button class="btn btn-danger" type="submit" name="delItem" value="1">Remove Item</button>
-					  </div>
-					</form>
-				');
-				// echo ("<p>".$countItem." ".print_r($listItems, true)."</p>");
+				$itemNumber++;
 			}
-		?>
-		<div>
-			<form class="form-group ml-3 mr-3" action="addItem.php" method="post">
-				<div class="form-group">
-					<label><h5>New Item :</h5></label>
-					<div>
-						<div class="input-group mb-2">
-						  <div class="input-group-prepend">
-						    <span class="input-group-text">Item : </span>
-						  </div>
-						  <input class="form-control" required="true" type="text" name="itemName" placeholder="Item Name" aria-label="Item">
-						</div>
-						<div class="input-group mb-2">
-						  <div class="input-group-prepend">
-						    <span class="input-group-text">Qty : </span>
-						  </div>
-						  <input class="form-control" type="number" pattern="[0-9]*" name="itemQty" placeholder="1" aria-label="Qty">
-						  <div class="input-group-prepend ml-2">
-						    <span class="input-group-text">Price : </span>
-						  </div>
-						  <input class="form-control" required="true" type="number" step="0.01" pattern="[0-9]*" inputmode="decimal" name="itemPrice" placeholder="Per 1" aria-label="Unit Price">
-						</div>
+			echo ('
+				  </tbody>
+				  <thead class="thead-light">
+				    <tr>
+			          <th scope="row">#</th>
+			          <th></th>
+			          <th><i>Total</i></th>
+			          <th>'.$total.'</th>
+			        </tr>
+				  </thead>
+				  </table>
+				  <div class="form-group">
+				    <button class="btn btn-danger" type="submit" name="delItem" value="1">Remove Item</button>
+				  </div>
+				</form>
+			');
+			// echo ("<p>".$countItem." ".print_r($listItems, true)."</p>");
+		}
+	?>
+
+	<div>
+
+
+		<form class="form-group ml-3 mr-3" action="addItem.php" method="post">
+			<div class="form-group">
+				<label><h5>New Item :</h5></label>
+				<div>
+					<div class="input-group mb-2">
+					  <div class="input-group-prepend">
+					    <span class="input-group-text">Item : </span>
+					  </div>
+					  <input class="form-control" required="true" type="text" name="itemName" placeholder="Item Name" aria-label="Item">
+					</div>
+					<div class="input-group mb-2">
+					  <div class="input-group-prepend">
+					    <span class="input-group-text">Qty : </span>
+					  </div>
+					  <input class="form-control" type="number" pattern="[0-9]*" name="itemQty" placeholder="1" aria-label="Qty">
+					  <div class="input-group-prepend ml-2">
+					    <span class="input-group-text">Price : </span>
+					  </div>
+					  <input class="form-control" required="true" type="number" step="0.01" pattern="[0-9]*" inputmode="decimal" name="itemPrice" placeholder="Per 1" aria-label="Unit Price">
 					</div>
 				</div>
-				<div class="form-group">
-					<button class="btn btn-primary" type="submit" name="addItem" value="1">ADD</button>
-				</div>
-			</form>
-			<form class="form-group ml-3 mr-3" id="resetItem" action="resetItem.php" method="post">	
-				<div class="form-group">
-					<button class="btn btn-danger" type="submit">RESET LIST</button>
-				</div>
-			</form>		
-		</div>
-	  </div>
+			</div>
+			
+			<div class="form-group">
+				<button class="btn btn-primary" type="submit" name="addItem" value="1">ADD</button>
+			</div>
+		</form>
+		<form class="form-group ml-3 mr-3" id="resetItem" action="resetItem.php" method="post">	
+			<div class="form-group">
+				<button class="btn btn-danger" type="submit">RESET LIST</button>
+			</div>
+			
+		</form>
+		
 	</div>
+
+
 </body>
 </html>
