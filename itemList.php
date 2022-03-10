@@ -103,6 +103,16 @@
 					  </div>
 					  <input class="form-control" required="true" type="number" step="0.01" pattern="[0-9]*" inputmode="decimal" name="itemPrice" placeholder="Per 1" aria-label="Unit Price">
 					</div>
+					<div class="input-group-prepend ml-2">
+					  <div class="form-check form-check-inline">
+					    <input class="form-check-input" type="radio" name="entryType" id="entryType_plus" value="plus" checked>
+					    <label class="form-check-label" for="entryType_plus">+</label>
+					  </div>
+					  <div class="form-check form-check-inline">
+					    <input class="form-check-input" type="radio" name="entryType" id="entryType_minus" value="minus">
+					    <label class="form-check-label" for="entryType_minus">-</label>
+					  </div>
+					</div>
 				</div>
 			</div>
 			

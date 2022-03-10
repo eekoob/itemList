@@ -11,7 +11,12 @@
 			else {
 				$itemQty = test_input($_POST["itemQty"]);
 			}
-			$itemPrice = test_input($_POST["itemPrice"]);
+			if ($_POST["entryType"]=="plus") {
+				$itemPrice = test_input($_POST["itemPrice"]);
+			}
+			else {
+				$itemPrice = (-1)*test_input($_POST["itemPrice"]);
+			}		
 		}
 
 		if(!isset($_COOKIE["countItem"])) {
