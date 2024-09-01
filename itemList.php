@@ -22,7 +22,7 @@
         </li>
     </ul>
 	<div>
-		<h3 class="mt-3 ml-3">Items List</h3>
+		<h3 class="mt-3 ml-3">Item List</h3>
 	</div>
 
 	<?php 
